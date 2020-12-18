@@ -8,9 +8,9 @@ public class ClientGreeter {
    public static void main(String [] args) {
 	  //1. Create a String for the ip address of the server. 
 	  // If you don't know how to find a computer's ip address, ask about ifconfig on linux/mac and ipconfig on windows.
-      String iPAdress="34.210.28.206";
+      String iPAdress="18.237.236.131";
       //2. Create an integer for the server's port number
-      int portNumber= 8050;
+      int portNumber= 8080;
       //3. Surround steps 4-9 in a try-catch block that catches any IOExceptions.
       try {
     	  Socket socket=new Socket(iPAdress, portNumber);
@@ -18,6 +18,7 @@ public class ClientGreeter {
     	  dataOutput.writeUTF("Hello");
     	  DataInputStream inputData=new DataInputStream(socket.getInputStream());
     	 String message= inputData.readUTF();
+    	 System.out.println(message);
     	 socket.close();
       }catch(IOException e) {
     	  e.printStackTrace();

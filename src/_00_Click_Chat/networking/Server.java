@@ -65,6 +65,7 @@ public class Server {
 	public void sendClick() {
 		try {
 			if (os != null) {
+				
 				os.writeObject("CLICK SENT FROM SERVER");
 				os.flush();
 			}
