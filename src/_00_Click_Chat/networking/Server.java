@@ -42,7 +42,7 @@ public class Server {
 				}catch(EOFException e) {
 					JOptionPane.showMessageDialog(null, "Connection Lost");
 					System.exit(0);
-				}
+				} 
 			}
 
 		} catch (Exception e) {
