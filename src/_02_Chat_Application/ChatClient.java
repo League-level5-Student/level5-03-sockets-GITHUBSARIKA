@@ -12,32 +12,25 @@ public class ChatClient {
 	static ObjectOutputStream os;
 	static ObjectInputStream is;
 	static Socket socket;
-public static void main(String[] args) {
+public ChatClient(String ip, int portNumber) {
+		// TODO Auto-generated constructor stub
+	}
+public void start() {
 	String iPAdress="18.237.236.131";
 	int portNumber=8080;
 	try {
 		socket=new Socket(iPAdress, portNumber);
-		String yesServer=JOptionPane.showInputDialog("Would you llike to join a server?");
+		
 		
 		os=new ObjectOutputStream(socket.getOutputStream());
 		os.writeUTF("Hello");
 		is=new ObjectInputStream(socket.getInputStream());
 		String message=is.readUTF();
 		os.flush();
-		if(yesServer.equals("yes")) {
-			 iPAdress=JOptionPane.showInputDialog("Enter the iPAdress.");
-			 String port=JOptionPane.showInputDialog("Enter the port number");
-			 portNumber=Integer.parseInt(port);
-			 sendMessage();
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		socket.close();
-	} catch (UnknownHostException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		
 }
 //Sending message
 public static void sendMessage() {

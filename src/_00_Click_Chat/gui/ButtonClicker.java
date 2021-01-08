@@ -33,7 +33,6 @@ public class ButtonClicker extends JFrame {
 			setSize(400, 300);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			server.start();
-			
 		}else{
 			setTitle("CLIENT");
 			String ipStr = JOptionPane.showInputDialog("Enter the IP Address");

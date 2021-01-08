@@ -18,7 +18,7 @@ public class ChatServer {
 public ChatServer(int portNumber) {
 	this.portNumber=portNumber;
 }
-public static void main(String[] args) throws IOException {
+public void start() throws IOException {
 	server=new ServerSocket(portNumber);
 	socket=server.accept();
 	boolean connected=true;
