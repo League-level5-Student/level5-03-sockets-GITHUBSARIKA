@@ -10,23 +10,27 @@ import java.net.SocketTimeoutException;
 import _01_Intro_To_Sockets.server.ServerGreeter;
 
 public class ChatServer {
-	private static int portNumber;
-	private static ServerSocket server;
-	private static Socket socket;
-	ObjectOutputStream os;
-	ObjectInputStream is;
+	private int portNumber;
+	private ServerSocket server;
+	private Socket socket;
+	ObjectOutputStream oos;
+	ObjectInputStream ois;
 public ChatServer(int portNumber) {
 	this.portNumber=portNumber;
 }
 public void start() throws IOException {
 	server=new ServerSocket(portNumber);
 	socket=server.accept();
+	
+	oos=new ObjectOutputStream(socket.getOutputStream());
+	ois=new ObjectInputStream(socket.getInputStream());
 	boolean connected=true;
+	oos.flush();
 	while(connected==true) {
 		try {
-			ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
+			
 			oos.writeUTF(" ");
-	ObjectInputStream ois=new ObjectInputStream(socket.getInputStream());
+	
 	ois.read();
 	         
 	socket.close();
@@ -56,9 +60,9 @@ public void start() throws IOException {
 }
 public void sendMessage() {
 	try {
-	if(os!=null) {
-		os.writeObject("Hello");
-		os.flush();
+	if(oos!=null) {
+		oos.writeObject("Hello");
+		oos.flush();
 	}
 	}catch(IOException e) {
 		e.printStackTrace();

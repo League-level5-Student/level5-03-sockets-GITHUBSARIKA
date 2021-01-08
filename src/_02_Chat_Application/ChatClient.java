@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
 public class ChatClient {
-	static ObjectOutputStream os;
+	static ObjectOutputStream oos;
 	static ObjectInputStream is;
 	static Socket socket;
 public ChatClient(String ip, int portNumber) {
@@ -19,14 +19,24 @@ public void start() {
 	String iPAdress="18.237.236.131";
 	int portNumber=8080;
 	try {
+		oos=new ObjectOutputStream(socket.getOutputStream());
+		is=new ObjectInputStream(socket.getInputStream());
+			oos.flush();
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
+
+	try {
 		socket=new Socket(iPAdress, portNumber);
 		
 		
-		os=new ObjectOutputStream(socket.getOutputStream());
-		os.writeUTF("Hello");
-		is=new ObjectInputStream(socket.getInputStream());
+		
+		oos.writeUTF("Hello");
+		
 		String message=is.readUTF();
-		os.flush();
+		oos.flush();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -35,9 +45,9 @@ public void start() {
 //Sending message
 public static void sendMessage() {
 	try {
-		if(os!=null) {                                                      
+		if(oos!=null) {                                                      
 			String message=JOptionPane.showInputDialog("Hi");
-			os.flush();
+			oos.flush();
 		}
 	}catch(IOException e) {
 		e.printStackTrace();
