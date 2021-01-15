@@ -1,11 +1,14 @@
 package _02_Chat_Application;
 
+import java.awt.HeadlessException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+
+import javax.swing.JOptionPane;
 
 import _01_Intro_To_Sockets.server.ServerGreeter;
 
@@ -53,6 +56,17 @@ public void start() throws IOException {
 			thread.join();
 		}catch(InterruptedException e) {
 			e.printStackTrace();
+		}
+		while(socket.isConnected()) {
+			try {
+				JOptionPane.showMessageDialog(null, ois.readObject());
+			} catch (HeadlessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
