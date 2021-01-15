@@ -1,5 +1,6 @@
 package _02_Chat_Application;
 
+import java.awt.HeadlessException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -40,6 +41,21 @@ public void start() {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	while(socket.isConnected()) {
+		try {
+			JOptionPane.showMessageDialog(null, is.readObject());
+			sendMessage();
+		} catch (HeadlessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 		
 }
 //Sending message
@@ -47,6 +63,7 @@ public static void sendMessage() {
 	try {
 		if(oos!=null) {                                                      
 			String message=JOptionPane.showInputDialog("Hi");
+			oos.writeObject(message);
 			oos.flush();
 		}
 	}catch(IOException e) {
