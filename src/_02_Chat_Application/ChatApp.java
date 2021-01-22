@@ -17,6 +17,7 @@ public ChatApp() {
 		chatServer=new ChatServer(8080);
 		try {
 			chatServer.start();
+		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -27,6 +28,7 @@ public ChatApp() {
 		int portNumber=Integer.parseInt(port);
 		chatClient=new ChatClient(ip, portNumber);
 		chatClient.start();
+		
 	}
 }
 public static void main(String[] args) {

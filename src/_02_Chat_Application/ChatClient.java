@@ -17,9 +17,20 @@ public ChatClient(String ip, int portNumber) {
 		// TODO Auto-generated constructor stub
 	}
 public void start() {
-	String iPAdress="18.237.236.131";
+	String iPAdress="34.211.182.132";
 	int portNumber=8080;
 	try {
+		socket=new Socket(iPAdress, portNumber);
+	} catch (UnknownHostException e2) {
+		// TODO Auto-generated catch block
+		e2.printStackTrace();
+	} catch (IOException e2) {
+		// TODO Auto-generated catch block
+		e2.printStackTrace();
+	}
+	try {
+		
+		sendMessage();
 		oos=new ObjectOutputStream(socket.getOutputStream());
 		is=new ObjectInputStream(socket.getInputStream());
 			oos.flush();
@@ -30,7 +41,7 @@ public void start() {
 	
 
 	try {
-		socket=new Socket(iPAdress, portNumber);
+		
 		
 		
 		

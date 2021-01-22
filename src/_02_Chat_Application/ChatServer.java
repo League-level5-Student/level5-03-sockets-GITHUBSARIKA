@@ -69,8 +69,6 @@ public void start() throws IOException {
 			}
 		}
 	}
-	
-
 }
 public void sendMessage() {
 	try {
