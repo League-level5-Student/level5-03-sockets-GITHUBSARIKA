@@ -19,53 +19,41 @@ public ChatClient(String ip, int portNumber) {
 public void start() {
 	String iPAdress="34.211.182.132";
 	int portNumber=8080;
-	try {
-		socket=new Socket(iPAdress, portNumber);
-	} catch (UnknownHostException e2) {
-		// TODO Auto-generated catch block
-		e2.printStackTrace();
-	} catch (IOException e2) {
-		// TODO Auto-generated catch block
-		e2.printStackTrace();
-	}
-	try {
-		
-		sendMessage();
-		oos=new ObjectOutputStream(socket.getOutputStream());
+	
+		try {
+			
+			socket=new Socket(iPAdress, portNumber);
+			oos=new ObjectOutputStream(socket.getOutputStream());
 		is=new ObjectInputStream(socket.getInputStream());
 			oos.flush();
-	} catch (IOException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
+			
+		} catch (UnknownHostException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+	
+	
 	
 
-	try {
-		
-		
-		
-		
-		oos.writeUTF("Hello");
-		
-		String message=is.readUTF();
-		oos.flush();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+	
 	while(socket.isConnected()) {
 		try {
+			
+			
 			JOptionPane.showMessageDialog(null, is.readObject());
+			System.out.println(is.readObject());
 			sendMessage();
-		} catch (HeadlessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			
+			
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+		
 	}
 		
 }

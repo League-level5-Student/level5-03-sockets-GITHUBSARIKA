@@ -27,37 +27,19 @@ public void start() throws IOException {
 	
 	oos=new ObjectOutputStream(socket.getOutputStream());
 	ois=new ObjectInputStream(socket.getInputStream());
-	boolean connected=true;
+	
 	oos.flush();
-	while(connected==true) {
-		try {
-			
-			oos.writeUTF(" ");
+	while(socket.isConnected()) {
+		System.out.println("Hey there!");
+		oos.writeUTF(" ");
 	
 	ois.read();
 	         
 	socket.close();
-	}catch(SocketTimeoutException e) {
-		connected=false;
-		e.printStackTrace();
-	}catch(IOException e) {
-		connected=false;
-		e.printStackTrace();                                    
-	}
-		//Making and joining the thread
-		Thread thread=null;
-		try {
-			thread=new ServerGreeter();
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
-		thread.start();
-		try{
-			thread.join();
-		}catch(InterruptedException e) {
-			e.printStackTrace();
-		}
-		while(socket.isConnected()) {
+	
+
+		
+		
 			try {
 				JOptionPane.showMessageDialog(null, ois.readObject());
 			} catch (HeadlessException e) {
@@ -69,7 +51,8 @@ public void start() throws IOException {
 			}
 		}
 	}
-}
+	
+
 public void sendMessage() {
 	try {
 	if(oos!=null) {
