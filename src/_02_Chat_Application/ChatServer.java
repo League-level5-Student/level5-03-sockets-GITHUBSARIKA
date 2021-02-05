@@ -1,4 +1,4 @@
-package _02_Chat_Application;
+                                                   package _02_Chat_Application;
 
 import java.awt.HeadlessException;
 import java.io.IOException;
